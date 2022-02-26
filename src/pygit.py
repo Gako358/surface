@@ -83,21 +83,6 @@ class Pygit(object):
             repository.repo.git.push('origin', 'main')
         output_queue.put("DONE")
 
-    def local_repos(repository, remote_repo, path_repo):
-        """
-        Common repos method
-        """
-        user = configparser.ConfigParser()
-        user.read('/home/user/path/to/user_cfg')
-        repository = Autogit(
-                repo = remote_repo,
-                user = dict(user.items('user_id')),
-                path = path_repo
-                )
-        if repository.commit() is True:
-            repository.repo.git.commit('-m', 'Automatic update')
-            repository.repo.git.push('origin', 'main')
-
     def run(args):
         process = configparser.ConfigParser()
         process.read('/home/user/path/to/repos.cfg')
