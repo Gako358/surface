@@ -23,10 +23,6 @@ class Pygit(object):
         _.update(user)
         user = _
 
-        ### These need to be changed accordingly
-        self.user_cfg = '/home/user/path/to/user.cfg'
-        self.repos_cfg = '/home/user/path/to/repos.cfg'
-
         if not os.path.isfile(user['ssh']):
             raise Exception(
                 f'Missing custom SSH script {user["ssh"]}!\n\n'
@@ -75,7 +71,7 @@ class Pygit(object):
         Common repos method
         """
         user = configparser.ConfigParser()
-        user.read(self.user_cfg)
+        user.read('/home/user/path/to/user_cfg')
         repository = Pygit(
                 repo = remote_repo,
                 user = dict(user.items('user_id')),
@@ -94,7 +90,7 @@ class Pygit(object):
         Common repos method
         """
         user = configparser.ConfigParser()
-        user.read(self.user_cfg)
+        user.read('/home/user/path/to/user_cfg')
         repository = Autogit(
                 repo = remote_repo,
                 user = dict(user.items('user_id')),
@@ -106,7 +102,7 @@ class Pygit(object):
 
     def run(args):
         process = configparser.ConfigParser()
-        process.read(self.repos_cfg)
+        process.read('/home/user/path/to/repos.cfg')
         queues = []
         num_processes = 0
 
