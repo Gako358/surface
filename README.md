@@ -7,8 +7,8 @@ Maintain full control on all your dotfiles, git repos, both local and remote wit
 ## Change config locations for symlink later
 
 1.  Open up pygit.py
-    *  On line 74 and 93, change the path to the location of the user.cfg file
-    *  On line 105 change the path to the location of the repos.cfg file
+    *  On line 72 change the path to the location of the user.cfg file
+    *  On line 88 change the path to the location of the repos.cfg file
 
 2.  Open up confup.py
     *  Under DIRECTORIES, from line 40 - 64, need to change to "Your" files location
