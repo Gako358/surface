@@ -1,9 +1,8 @@
-#!/home/user/path/to/surface/.venv/bin/python
-
 import shutil, os
 import config
 from shutil import ignore_patterns, copy2, Error, copystat
 from stringcolor import *
+from dot_path import *
 
 def configDir(src, dst, symlinks=False, ignore=None):
     errors = []
@@ -31,42 +30,10 @@ def configFile(src, dst, symlinks=False, ignore=None):
     update = shutil.copy(src, dst)
     print(f'{cs("Copied file:", config.MAGENTA)} {src[14:]:28} "to" {dst[19:]}\n')
 
-
-### DIRECTORIES ###
-
-# Dotfiles
-
-### VM Examples ###
-bspwm_src = '/home/username/.config/bspwm/'
-bspwm_dst = '/home/username/path/to/Dotfiles/.config/desktop/bspwm/'
-
-polybar_src = '/home/username/.config/polybar/'
-polybar_dst = '/home/username/path/to/Dotfiles/.config/desktop/polybar/'
-
-sxhkd_src = '/home/username/path/to/.config/sxhkd/'
-sxhkd_dst = '/home/username/path/to/Dotfiles/.config/desktop/sxhkd/'
-
-### Misc Examples ###
-dunst_src = '/home/username/.config/dunst/'
-dunst_dst = '/home/username/path/to/Dotfiles/.config/dunst/'
-
-kitty_src = '/home/username/.config/kitty/'
-kitty_dst = '/home/username/path/to/Dotfiles/.config/kitty/'
-
-rofi_src = '/home/username/.config/rofi/'
-rofi_dst = '/home/username/path/to/Dotfiles/.config/rofi/'
-
-# SINGLE FILES
-picom_src = '/home/username/.config/picom.conf'
-picom_dst = '/home/username/path/to/Dotfiles/.config/picom.conf'
-
-xinitrc_src = '/home/username/.xinitrc'
-xinitrc_dst = '/home/username/path/to/Dotfiles/.xinitrc'
-
 def push(args):
 
     # Dotfiles
-    configDir(bspwm_src, bspwm_dst)         # <== Set symlinks and ignore patterns here if have any
+    configDir(bspwm_src, bspwm_dst)
     configDir(polybar_src, polybar_dst)
     configDir(sxhkd_src, sxhkd_dst)
     configDir(dunst_src, dunst_dst)

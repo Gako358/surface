@@ -1,8 +1,3 @@
-#!/home/user/location/pygit/venv/bin/python
-
-# Authors:
-# MerrinX <knutago1@outlook.com>
-
 import os
 import time
 import config
@@ -69,7 +64,10 @@ class Pygit(object):
         Common repos method
         """
         user = configparser.ConfigParser()
-        user.read('/home/user/path/to/user_cfg')
+        __location__ = os.path.realpath(
+                os.path.join(os.getcwd(), os.path.dirname(__file__))
+                )
+        user.read(os.path.join(__location__, 'user.cfg'))
         repository = Pygit(
                 repo = remote_repo,
                 user = dict(user.items('user_id')),
@@ -84,7 +82,10 @@ class Pygit(object):
 
     def run(args):
         process = configparser.ConfigParser()
-        process.read('/home/user/path/to/repos.cfg')
+        __location__ = os.path.realpath(
+                os.path.join(os.getcwd(), os.path.dirname(__file__))
+                )
+        process.read(os.path.join(__location__, 'repos.cfg'))
         queues = []
         num_processes = 0
 

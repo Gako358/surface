@@ -24,3 +24,10 @@ build:
 clean:
 	@echo -e "Cleaning up..."
 	@rm -rf $(dest)
+
+# INSTALLATION
+# Running make install will create a symlink
+# to the /usr/local/bin/surface
+install:
+	@echo -e "Installing program for you..."
+	@python ./scripts/install.py
