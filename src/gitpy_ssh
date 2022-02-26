@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -i /home/user/.ssh/id_rsa -oIdentitiesOnly=yes -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "$@"
