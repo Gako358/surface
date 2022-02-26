@@ -51,18 +51,16 @@ class Pygit(object):
         for file in self.repo.untracked_files:
             print(f'{cs("Added untracked file:", config.BLUE)} {file} {os.path.basename(self.path[:-1])}\n')
             self.repo.git.add(file)
-            if has_changed is False:
-                has_changed = True
+            has_changed = True
 
-        if self.repo.is_dirty() is True:
+        if self.repo.is_dirty():
             for file in self.repo.git.diff(None, name_only=True).split('\n'):
                 if file == '':
                     continue
 
                 print(f'{cs("Added file:", config.BLUE)} {file} {os.path.basename(self.path[:-1])}\n')
                 self.repo.git.add(file)
-                if has_changed is False:
-                    has_changed = True
+                has_changed = True
 
         return has_changed
 
