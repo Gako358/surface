@@ -76,7 +76,6 @@ class Pygit(object):
                 path = path_repo
                 )
         if repository.commit() is True:
-            time.sleep(1)
             output_queue.put(f"\nINPUT: {cs('Write commit msg for ', config.RED)} {os.path.basename(path_repo[:-1])} = ")
             result = input_queue.get()
             repository.repo.git.commit('-m', result)
@@ -99,14 +98,31 @@ class Pygit(object):
             num_processes += 1
 
         done = 0
-        while done < num_processes:
+        waiting_input = 0
+        keep = []
+        while done + waiting_input < num_processes:
             for iq, oq in queues:
                 if not oq.empty():
                     req = oq.get()
-                    if "INPUT" in req:
-                        res = input(req.split(":")[1])
-                        iq.put(res)
+                    if "INPUT" in req: 
+                        waiting_input += 1
+                        keep.append((req, iq))
                     elif "DONE" in req:
+                        done += 1
+                    else:
+                        print(req)
+        done = 0 
+
+        # Keeping inputs until all other processes are done
+        for req, iq in keep:
+            res = input(req.split(":")[1])
+            iq.put(res)
+
+        while done < waiting_input:
+            for iq, oq in queues:
+                if not oq.empty():
+                    req = oq.get()
+                    if "DONE" in req:
                         done += 1
                     else:
                         print(req)
