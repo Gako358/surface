@@ -111,6 +111,7 @@ class Pygit(object):
                         done += 1
                     else:
                         print(req)
+        # Reseting
         done = 0 
 
         # Keeping inputs until all other processes are done
