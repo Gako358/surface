@@ -7,7 +7,7 @@ Maintain full control on all your dotfiles, git repos, both local and remote wit
 ## Install the program
 2.  Run **sudo make install** 
 
-## Change config locations for symlink later
+## Setup the config files for your environment
 
 3.  Open up dot_path.py
     *  Under DIRECTORIES, need to change to "Your" files location
